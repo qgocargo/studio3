@@ -4,13 +4,10 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  BrainCircuit,
   LayoutDashboard,
-  Package,
-  Ship,
   Truck,
-  Users,
   Warehouse,
+  Users,
 } from 'lucide-react';
 import {
   SidebarProvider,
@@ -42,7 +39,6 @@ const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/shipments', label: 'Shipments', icon: Truck },
   { href: '/inventory', label: 'Inventory', icon: Warehouse },
-  { href: '/planner', label: 'AI Planner', icon: BrainCircuit },
   { href: '/team', label: 'Team', icon: Users },
 ];
 
@@ -66,7 +62,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref legacyBehavior>
+                <Link href={item.href} legacyBehavior passHref>
                   <SidebarMenuButton
                     as="a"
                     isActive={pathname.startsWith(item.href)}
