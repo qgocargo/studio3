@@ -13,19 +13,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-} from '@/components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { inventoryItems, shipments, teamMembers } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import type { ShipmentStatus } from '@/lib/types';
 import { Package, Truck, Users, AlertCircle } from 'lucide-react';
+import { InventoryChart } from './components/inventory-chart';
 
 const kpis = [
   {
@@ -62,18 +55,6 @@ const statusColors: Record<ShipmentStatus, string> = {
   Delayed: 'bg-orange-200 text-orange-800',
 };
 
-const chartData = inventoryItems.map((item) => ({
-  name: item.name,
-  quantity: item.quantity,
-}));
-
-const chartConfig = {
-  quantity: {
-    label: 'Quantity',
-    color: 'hsl(var(--primary))',
-  },
-};
-
 export default function DashboardPage() {
   const recentShipments = shipments.slice(0, 5);
 
@@ -102,28 +83,7 @@ export default function DashboardPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ChartContainer config={chartConfig} className="h-[300px] w-full">
-              <BarChart
-                accessibilityLayer
-                data={chartData}
-                margin={{ top: 20, right: 20, bottom: 5, left: 0 }}
-              >
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="name"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <YAxis />
-                <Tooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dot" />}
-                />
-                <Bar dataKey="quantity" fill="var(--color-quantity)" radius={4} />
-              </BarChart>
-            </ChartContainer>
+            <InventoryChart />
           </CardContent>
         </Card>
         <Card>
