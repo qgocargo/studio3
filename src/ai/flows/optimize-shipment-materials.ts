@@ -2,7 +2,7 @@
 'use server';
 
 /**
- * @fileOverview This file defines a Genkit flow to optimize the quantity of materials for a shipment.
+ * @fileOverview This file defines a Genkit flow to optimize the quantity of of materials for a shipment.
  *
  * - optimizeShipmentMaterials - A function that takes shipment details and returns recommended material quantities.
  * - OptimizeShipmentMaterialsInput - The input type for the optimizeShipmentMaterials function.
@@ -31,7 +31,8 @@ const OptimizeShipmentMaterialsInputSchema = z.object({
   distance: z
     .string()
     .describe(
-      'The distance the shipment will travel (e.g., short, medium, long).'n    ),
+      'The distance the shipment will travel (e.g., short, medium, long).'
+    ),
   specialRequirements: z
     .string()
     .optional()
